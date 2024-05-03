@@ -9,21 +9,21 @@ from store.utils import cookie_cart, get_cart_data, guest_order
 
 def home(request):
     context = {}
-    return render(request, "store/home.html", context)
+    return render(request, "store/pages/home.html", context)
 
 def store(request):
     products = Product.objects.all()
     context = get_cart_data(request)
     context["products"] = products
-    return render(request, "store/store.html", context)
+    return render(request, "store/pages/store.html", context)
 
 def cart(request):
     context = get_cart_data(request)
-    return render(request, "store/cart.html", context)
+    return render(request, "store/pages/cart.html", context)
 
 def checkout(request):
     context = get_cart_data(request)
-    return render(request, "store/checkout.html", context)
+    return render(request, "store/pages/checkout.html", context)
 
 def update_item(request):
     data = json.loads(request.body)

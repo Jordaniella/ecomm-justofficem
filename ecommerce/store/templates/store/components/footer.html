@@ -1,0 +1,136 @@
+{% load static %}
+<footer data-anchor="true" data-name="Footer" class="o_footer">
+  <section class="container text-center footer-widget pt-5">
+    <div class="row">
+      <div class="col">
+        <p class="mb-2">Comment pouvons nous aider ?</p>
+        <h4>
+          <span style="font-size: 1.125rem">Contactez-nous à tout moment</span>
+        </h4>
+      </div>
+      <div class="col">
+        <p class="mb-2">Appelez-nous</p>
+        <h5><a href="tel://+261 38 42 080 80" class="jm-color">+261 34 16 090 71</a>
+        </h5>
+      </div>
+      <div class="col">
+        <p class="mb-2">Envoyez-nous un message</p>
+        <h5>
+          <a
+            class="jm-color"
+            href="mailto:contact@grafikaly.mg"
+            data-bs-original-title=""
+            title=""
+            >automationjordana@gmail.com</a
+          ><br />
+        </h5>
+      </div>
+      <div class="col">
+        <p class="s_social_media_title d-block mb-2">Suivez-nous</p>
+        <a href="#" class="link" target="_blank"><i class="fa-brands fa-linkedin-in fs-5"></i></a>
+        <a href="#" class="link ms-2" target="_blank"><i class="fa-brands fa-instagram fs-5"></i></a>
+        <a href="#" class="link ms-2" target="_blank"><i class="fa-brands fa-facebook fs-5"></i></a>
+      </div>
+    </div>
+  </section>
+  <section class="container text-center footer-widget">
+    <div data-name="Séparateur">
+      <hr
+        class="w-100 mx-auto"
+        style="
+          border-top-width: 1px;
+          border-top-style: solid;
+          border-color: var(--600);
+        "
+      />
+    </div>
+
+    <div class="row pb-2 align-items-center">
+      <div class="col-lg-2">
+        <a class="d-flex align-items-center navbar-jm--title" href="{% url "home" %}">
+            <img src="{% static "images/logo.png" %}" alt="JustOfficeM logo" width="50" height="60">
+            <span class="fs-4 ml-3">JustOfficeM</span>
+        </a>
+      </div>
+      <div class="col-lg-10 pb16 text-end">
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item"><a href="{% url "home" %}" class="nav-link">Page d'accueil</a></li>
+          <li class="list-inline-item">•</li>
+          <li class="list-inline-item"><a href="#" class="nav-link">À propos de nous</a></li>
+          <li class="list-inline-item">•</li>
+          <li class="list-inline-item"><a href="{% url "store" %}" class="nav-link">Produits</a></li>
+          <li class="list-inline-item">•</li>
+          <li class="list-inline-item">
+            <a href="#" class="nav-link">Conditions de services</a>
+          </li>
+          <li class="list-inline-item">•</li>
+          <li class="list-inline-item">
+            <a href="/privacy" class="nav-link">Politique vie privée</a>
+          </li>
+          <li class="list-inline-item">•</li>
+          <li class="list-inline-item"><a href="/help" class="nav-link">Aide</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <div class="footer--copyright" data-name="Copyright">
+    <div class="container py-3 center-block">
+        <span class="text-center" >Copyright ©&nbsp;justOfficeM - 2024</span>
+    </div>
+  </div>
+</footer>
+{% comment %}
+<div
+  class="modal s_popup_bottom s_popup_no_backdrop o_cookies_discrete modal_shown show"
+  data-show-after="500"
+  data-display="afterDelay"
+  data-consents-duration="999"
+  data-bs-focus="false"
+  data-bs-backdrop="false"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  style="display: block"
+  aria-modal="true"
+  role="dialog"
+>
+  <div class="modal-dialog d-flex s_popup_size_full">
+    <div class="modal-content oe_structure">
+      <section class="o_colored_level o_cc o_cc1">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 pt16">
+              <p>
+                <span class="pe-1"
+                  >Nous utilisons des cookies pour vous offrir une meilleure
+                  expérience utilisateur sur ce site.</span
+                >
+                <a
+                  href="/cookie-policy"
+                  class="o_cookies_bar_text_policy btn btn-link btn-sm px-0"
+                  >Politique en matière de cookies</a
+                >
+              </p>
+            </div>
+            <div class="col-lg-4 text-end pt16 pb16">
+              <a
+                href="#"
+                id="cookies-consent-essential"
+                role="button"
+                class="js_close_popup btn btn-outline-primary rounded-circle btn-sm px-2"
+                >Que les essentiels</a
+              >
+              <a
+                href="#"
+                id="cookies-consent-all"
+                role="button"
+                class="js_close_popup btn btn-outline-primary rounded-circle btn-sm"
+                >Je suis d'accord</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+{% endcomment %}

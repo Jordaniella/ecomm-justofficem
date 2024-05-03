@@ -36,6 +36,9 @@ a {
 i {
   color: var(--text-black-100);
 }
+i:hover {
+  color: var(--primary-color);
+}
 .form-inline {
   display: flex;
   align-items: center;
@@ -132,4 +135,17 @@ i {
 
 .hidden {
   display: none !important;
+}
+
+.o_footer {
+  background-color: var(--bg-gray);
+  color: var(--text-black-100);
+}
+
+.jm-color {
+  color: var(--primary-color);
+}
+.footer--copyright {
+  background: var(--primary-color);
+  color: #ffffff;
 }
