@@ -1,0 +1,96 @@
+.jm-btn {
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  position: relative;
+}
+.jm-btn-decorator {
+  position: absolute;
+  right: -40px;
+  bottom: 0;
+  background: transparent;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 50px;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+.jm-btn-decorator i {
+  color: var(--text-black-100);
+  font-size: 1rem;
+  margin: auto 0;
+}
+.jm-btn-decorator::before,
+.jm-btn-decorator::after {
+  content: "";
+  position: absolute;
+  height: 50%;
+  width: 20px;
+  left: 0;
+  border-radius: 100% 0% 100% 0% / 0% 0% 100% 100%;
+}
+.jm-btn-decorator::before {
+  top: 0;
+}
+.jm-btn-decorator::after {
+  transform: rotateX(180deg);
+  bottom: 0;
+}
+/* ==================== Btn PRIMARY START ==========================*/
+.btn--primary {
+  background: var(--primary-color);
+  color: #ffffff;
+  box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+.btn--primary .jm-btn-decorator i {
+  color: var(--primary-color);
+}
+.btn--primary .jm-btn-decorator {
+  background: #ffffff;
+  border: none;
+  transform: scale(1);
+}
+.btn--primary .jm-btn-decorator::before,
+.btn--primary .jm-btn-decorator::after {
+  background: var(--primary-color);
+  border: none;
+}
+/* ==================== Btn PRIMARY END ==========================*/
+
+/* ==================== Btn REGULAR START ==========================*/
+.btn--regular {
+  border-top: var(--text-black-100) 2px solid;
+  border-bottom: var(--text-black-100) 2px solid;
+  border-left: var(--text-black-100) 2px solid;
+  border-right: none;
+  background: none;
+  color: var(--text-black-100);
+}
+
+.btn--regular .jm-btn-decorator {
+  transform: scale(1.12);
+  border-top: var(--text-black-100) 2px solid;
+  border-bottom: var(--text-black-100) 2px solid;
+  border-right: var(--text-black-100) 2px solid;
+  background: transparent;
+}
+
+.btn--regular .jm-btn-decorator i {
+  color: var(--text-black-100);
+}
+
+.btn--regular .jm-btn-decorator::before,
+.btn--regular .jm-btn-decorator::after {
+  border-right: var(--text-black-100) 2px solid;
+  border-left: none;
+  border-width: medium;
+  background: transparent;
+}
+
+/* ==================== Btn REGULAR END ==========================*/

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JustOfficeM</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/buttons.css" %}">
+    <link rel="shortcut icon" href="{% static "images/favicon.ico" %}"> 
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/regular.css' %}" rel="stylesheet" type="text/css">
+    <script type="text/javascript" defer>
+      let user = "{{request.user}}"
+      const getToken = (name) => {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    tokenValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return tokenValue;
+      }
+    const csrftoken = getToken('csrftoken');
+
+    const getCookie = (name) => {
+      // Split cookie string and get all individual name=value in an array
+      let cookieArr = document.cookie.split(";")
+
+      //Loop through the array elements
+      for (let i = 0; i < cookieArr.length; i++) {
+        let cookiePair = cookieArr[i].split('=')
+        /*Removing whitespace at the beginning of the cookie name
+        an compare it with the given string */
+        if (name == cookiePair[0].trim()) {
+          // Decode the cookie value and return
+          return decodeURIComponent(cookiePair[1])
+        }
+        
+      }
+      // Return null if not found
+      return null
+    }
+    let cart = JSON.parse(getCookie('cart'))
+    console.log("Cart : ", cart)
+
+    if (cart == undefined) {
+      cart = {}
+      console.log("Cart was created!")
+      document.cookie = 'cart='+ JSON.stringify(cart) + ";domain=;path=/"
+    }
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary px-4">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url "home" %}">
+          <img src="{% static "images/logo.png" %}" alt="JustOfficeM logo" width="50" height="60">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <a class="navbar-jm--title" href="{% url "home" %}">JustOfficeM</a>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url "home" %}">Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="{% url "store" %}">Boutique</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contactez-nous</a>
+            </li>
+          </ul>
+          <div class="form-inline my-2 my-lg-0">
+            <a href="{% url "checkout" %}"class="jm-btn btn--primary">
+              <div class="jm-btn-decorator"><i class="fa-solid fa-user"></i></div>
+              Login
+            </a> 
+            <div class="row navbar-brand">
+              <a href="{% url 'cart' %}" id="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+              </a>
+              {% if cartItems <= 0  %}
+              <p id="cart-total" class="zero center-block">{{cartItems}}</p>
+              {% else %}<p id="cart-total" class="center-block">{{cartItems}}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container">{% block content %}{% endblock content %}</div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src = "{% static "js/cart.js" %}" type="text/javascript"></script>
+  </body>
+</html>
