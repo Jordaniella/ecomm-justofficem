@@ -54,7 +54,7 @@ i:hover {
   box-shadow: hsl(0, 0%, 80%) 0 0 16px;
   background-color: #fff;
   border-radius: 20px;
-  padding: 10px;
+  padding: 2rem;
 }
 .cart {
   position: relative;
@@ -148,4 +148,26 @@ i:hover {
 .footer--copyright {
   background: var(--primary-color);
   color: #ffffff;
+}
+.jm-image {
+  max-height: 200px;
+}
+.jm-bg {
+  background: #ffffff;
+  box-shadow: 1px 3px 5px rgba(214, 214, 214, 1);
+}
+.jm-text {
+  color: var(--primary-color);
+}
+.card {
+  transform: translateY(0);
+  transition: transform 250ms ease;
+  overflow: hidden;
+}
+.card:hover {
+  transform: translateY(-30px);
+  box-shadow: var(--bs-box-shadow-lg);
+}
+.jm-table.table > :not(caption) > * > * {
+  padding: 1.2rem 0.5rem;
 }

@@ -7,6 +7,26 @@
   border-bottom-left-radius: 10px;
   position: relative;
 }
+
+.btn--simple i {
+  z-index: 1;
+}
+.btn--simple::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 0;
+  background-color: var(--light-primary-color);
+  transition: opacity 250ms ease;
+}
+.btn--simple:hover::after {
+  opacity: 1;
+}
 .jm-btn-decorator {
   position: absolute;
   right: -40px;
@@ -31,7 +51,7 @@
   position: absolute;
   height: 50%;
   width: 20px;
-  left: 0;
+  left: -2px;
   border-radius: 100% 0% 100% 0% / 0% 0% 100% 100%;
 }
 .jm-btn-decorator::before {
@@ -42,24 +62,58 @@
   bottom: 0;
 }
 /* ==================== Btn PRIMARY START ==========================*/
+/* .btn--icone {
+  width: 0;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+}
+.btn--icone .jm-btn-decorator {
+  background: var(--primary-color);
+}
+.btn--icone .jm-btn-decorator::before,
+.btn--icone .jm-btn-decorator::after {
+  background-color: #ffffff;
+} */
+/* ==================== Btn PRIMARY END ==========================*/
+/* ==================== Btn PRIMARY START ==========================*/
 .btn--primary {
   background: var(--primary-color);
   color: #ffffff;
   box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.1);
   border: none;
+  transition: background 400ms ease, color 250ms ease;
+}
+.btn--primary:hover {
+  background: #ffffff;
+  color: var(--primary-color);
+}
+.btn--primary:hover .jm-btn-decorator::before,
+.btn--primary:hover .jm-btn-decorator::after {
+  background: #ffffff;
+}
+.btn--primary:hover .jm-btn-decorator i {
+  color: #ffffff;
+}
+.btn--primary:hover .jm-btn-decorator {
+  background: var(--primary-color);
+  transition: background 400ms ease;
 }
 .btn--primary .jm-btn-decorator i {
   color: var(--primary-color);
+  transition: color 250ms ease;
 }
 .btn--primary .jm-btn-decorator {
   background: #ffffff;
   border: none;
+  box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.1);
   transform: scale(1);
 }
 .btn--primary .jm-btn-decorator::before,
 .btn--primary .jm-btn-decorator::after {
   background: var(--primary-color);
   border: none;
+  transition: background 400ms ease;
 }
 /* ==================== Btn PRIMARY END ==========================*/
 
@@ -71,6 +125,7 @@
   border-right: none;
   background: none;
   color: var(--text-black-100);
+  padding-right: 1.3rem;
 }
 
 .btn--regular .jm-btn-decorator {

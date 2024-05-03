@@ -1,5 +1,5 @@
 let allUpdateButtons = document.querySelectorAll(".update-cart");
-
+console.log(allUpdateButtons);
 allUpdateButtons.forEach((element) => {
   element.addEventListener("click", () => {
     let productId = element.dataset.product;

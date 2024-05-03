@@ -1,5 +1,5 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg bg-body-tertiary px-4">
+<nav class="navbar navbar-expand-lg px-4 jm-bg">
     <div class="container-fluid">
     <a class="navbar-brand" href="{% url "home" %}">
         <img src="{% static "images/logo.png" %}" alt="JustOfficeM logo" width="50" height="60">
@@ -29,9 +29,9 @@
             <a href="{% url 'cart' %}" id="cart-icon">
             <i class="fa-solid fa-cart-shopping"></i>
             </a>
-            {% if cartItems <= 0  %}
-            <p id="cart-total" class="zero center-block">{{cartItems}}</p>
-            {% else %}<p id="cart-total" class="center-block">{{cartItems}}</p>
+            {% if cartItems > 0  %}
+            {% comment %} <p id="cart-total" class="zero center-block">{{cartItems}}</p> {% endcomment %}
+            <p id="cart-total" class="center-block">{{cartItems}}</p>
             {% endif %}
         </div>
         </div>

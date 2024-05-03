@@ -1,0 +1,52 @@
+{% extends "store/main.html" %} {% load static %} {% block content %}
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url "store" %}" class="jm-text">Tous les produits</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{product.name}}</li>
+  </ol>
+</nav>
+<div class="row" style="height: 450px">
+  <div class="col">
+    <img
+      src="{{product.imageURL}}"
+      alt="placeholder{{product.name}}"
+      class="img-thumbnail"
+      style="height: 450px"
+    />
+  </div>
+  <div class="col d-flex flex-column justify-content-between align-items-start">
+    <h2>{{product.name}}</h2>
+    <h2>$ {{product.price}}</h2>
+    <p class="text-black">
+      Some quick example text to build on the card title and make up the bulk of
+      the card's content.
+    </p>
+    <button
+      data-product="{{product.id}}"
+      data-action="add"
+      class="jm-btn btn--primary update-cart"
+    >
+      <div class="jm-btn-decorator">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </div>
+      <span>Ajouter au panier</span>
+    </button>
+
+    <div>
+      <button
+        data-product="{{product.id}}"
+        data-action="add"
+        class="jm-btn btn--regular"
+      >
+        <div class="jm-btn-decorator">
+          <i class="fa-solid fa-credit-card"></i>
+        </div>
+        <span>Acheter maintenant</span>
+      </button>
+      <p class="text-black mt-3">Garantie satisfait ou remboursé de 30 jours</p>
+      <p class="text-black">Livraison: 30mn à 12H</p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

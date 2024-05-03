@@ -1,0 +1,33 @@
+{% load static %}
+<div class="card rounded-4" style="width: 18rem; min-height: 100%">
+    <a href="{% url "product" item.id %}" class="text-dark">
+        <img
+            src="{{item.imageURL}}"
+            alt="placeholder{{item.name}}"
+            class="card-img-top jm-image"
+        />
+    </a>
+    <div class="card-body">
+        <h5 class="card-title">
+            <a href="{% url "product" item.id %}" class="text-dark">{{item.name}}</a>
+        </h5>
+        <p class="card-text text-truncate" style="max-width: 100%;">    
+            <a href="{% url "product" item.id %}" class="text-dark">
+                Some quick example text to build on the card title and make up the bulk of
+                the card's content.
+            </a>
+        </p>
+        <h5>${{item.price | floatformat:2}}</h5>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <button data-product="{{item.id}}" data-action="add" class="jm-btn btn--primary update-cart">
+                <div class="jm-btn-decorator">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <span>Ajouter</span>
+            </button>
+            <a href="{% url "product" item.id %}" class="text-dark jm-btn btn--simple">
+                <i class="fa-solid fa-chevron-right fs-5"></i>
+            </a>
+        </div>
+    </div>
+</div>

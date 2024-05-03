@@ -67,3 +67,10 @@ def process_order(request):
         order.complete = True
     order.save()
     return JsonResponse("Payment submitted..", safe=False)
+
+def see_product(request, id): 
+    product = Product.objects.get(id=id)
+    context = get_cart_data(request)
+    context['product'] = product
+    print('cartItems', context['cartItems'])
+    return render(request, "store/pages/product-item.html", context)
