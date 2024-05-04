@@ -19,7 +19,7 @@
         </p>
         <h5>${{item.price | floatformat:2}}</h5>
         <div class="d-flex justify-content-between align-items-center mt-3">
-            <button data-product="{{item.id}}" data-action="add" class="jm-btn btn--primary update-cart">
+            <button data-product="{{item.id}}" data-action="add" class="jm-btn btn--primary update-cart" data-bs-toggle="modal" data-bs-target="#cartModal">
                 <div class="jm-btn-decorator">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>

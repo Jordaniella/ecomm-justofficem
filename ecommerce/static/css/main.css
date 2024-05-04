@@ -171,3 +171,20 @@ i:hover {
 .jm-table.table > :not(caption) > * > * {
   padding: 1.2rem 0.5rem;
 }
+#liveAlertPlaceholder {
+  position: absolute;
+  bottom: 0;
+  right: 30px;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999999;
+}
+.jm-container,
+.o_footer {
+  position: relative;
+  top: 6rem;
+}

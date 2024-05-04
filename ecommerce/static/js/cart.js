@@ -1,5 +1,5 @@
 let allUpdateButtons = document.querySelectorAll(".update-cart");
-console.log(allUpdateButtons);
+
 allUpdateButtons.forEach((element) => {
   element.addEventListener("click", () => {
     let productId = element.dataset.product;
@@ -52,5 +52,19 @@ const updateUserOrder = (productId, action) => {
     })
     .then((data) => {
       location.reload();
+      if (action == "add") {
+        appendAlert("Votre article a été ajouté au panier", "success");
+      } else {
+        appendAlert("L'article a bien été supprimer", "danger");
+      }
     });
 };
+
+// Activate the modal
+
+// const myModal = document.getElementById("cartModal");
+// const myInput = document.getElementById("myInput");
+
+// myModal.addEventListener("shown.bs.modal", () => {
+//   myInput.focus();
+// });

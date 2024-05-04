@@ -8,7 +8,7 @@ from store.utils import cookie_cart, get_cart_data, guest_order
 
 
 def home(request):
-    context = {}
+    context = get_cart_data(request)
     return render(request, "store/pages/home.html", context)
 
 def store(request):
@@ -39,7 +39,8 @@ def update_item(request):
         orderItem.quantity += 1
     elif action == "remove":
         orderItem.quantity -= 1
-    
+    elif action == "remove-all":
+        orderItem.quantity = 0
     orderItem.save()
     if orderItem.quantity <= 0:
         orderItem.delete()

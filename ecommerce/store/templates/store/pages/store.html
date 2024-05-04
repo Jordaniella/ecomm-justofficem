@@ -2,8 +2,9 @@
 <div class="row">
   {% for item in products %}
   <div class="col-lg-4 my-4 d-flex align-items-center justify-content-center">
-    {% include "store/components/product-item.html" with item=item %}
+    {% include "store/components/product-item.html" with item=item%}
   </div>
   {% endfor %}
 </div>
+
 {% endblock content %}
