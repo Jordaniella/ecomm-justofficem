@@ -1,10 +1,99 @@
 {% extends "store/main.html" %} {% load static %} {% block content %}
-<div class="row">
-  {% for item in products %}
-  <div class="col-lg-4 my-4 d-flex align-items-center justify-content-center">
-    {% include "store/components/product-item.html" with item=item%}
-  </div>
-  {% endfor %}
-</div>
+<div class="store-container">
+  <div class="row">
+    <div class="col-lg-3 col-md-5 col-12 categories"></div>
+    <div class="col-lg-9 col-md-7 col-12">
+      <div class="d-flex flex-column gap-5">
+        <input type="radio" id="view-mode__card" name="view-mode" checked class="hidden"/>
+        <input type="radio" id="view-mode__list" name="view-mode" class="hidden"/>
+        <form action="{% url "store" %}" method="POST" class="form-widget row align-items-center">
+            {% csrf_token %} 
+          <div class="col-sm-12 col-lg-7 col-md-6 jm-input-search">
+            {% if search %}
+              <input type="text" class="form-control" name="searchProd" placeholder="Rechercher un produit..." value="{{search}}">
+            {% else %}
+              <input type="text" class="form-control" name="searchProd" placeholder="Rechercher un produit...">
+            {% endif %}
+              <button type="submit" class="btn"><i class="fa-solid fa-search"></i></button>
+          </div>
+          <div class="col-sm-12 col-lg-5 col-md-6">
+            <div class="row">
+              <div class="col-9 d-flex gap-2 align-items-center">
+                <p style="width:100px">Trier par :</p>
+                  <select class="form-select filter_product" onchange="this.form.submit()" name="filter">
+                    {% for filter_item in filters %}
+                      {% if filter_item.is_select %}
+                      <option value="{{filter_item.value}}" selected>{{filter_item.name}}</option>
+                      {% else %}
+                      <option value="{{filter_item.value}}">{{filter_item.name}}</option>
+                      {% endif %}
+                    {% endfor %}
+                  </select>
+              </div>
+              <div class="col-3 d-flex gap-1 align-items-center">
+                <label class="form-control" for="view-mode__card">
+                  <i class="fa-solid fa-grip"></i>
+                </label>
+                <label class="form-control" for="view-mode__list"><i class="fa-solid fa-bars"></i></label>
+              </div>
+            </div>
+          </div>
+        </form>
+        {% if products %}
+        <div class="row view-mode__card">
+          <h2 class="ms-2">Nos produits</h2>
+          {% if search %}
+            <p> Résultats des recherches pour <span class="fw-bold"> " {{search}} "</span></p>
+          {% endif %}
+          {% for item in products %}
+          <div
+            class="col-lg-4 my-4 d-flex align-items-center justify-content-center"
+          >
+            {% include "store/components/product-item.html" with item=item%}
+          </div>
+          {% endfor %}
+        </div>
+        <div class="row view-mode__list">
+          <h2 class="ms-2">Nos produits</h2>
+          {% if search %}
+            <p class="ms-2"> Résultats des recherches pour <span class="fw-bold"> " {{search}} "</span></p>
+          {% endif %}
+          {% for item in products %}
+          <div
+            class="col-12 my-4"
+          >
+            {% include "store/components/product-list-item.html" with item=item%}
+          </div>
+          {% endfor %}
+        </div>
+        
+        <div class="pagination">
+            <span class="step-links">
+                {% if products.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ products.previous_page_number }}">previous</a>
+                {% endif %}
 
+                <span class="current">
+                    Page {{ products.number }} sur {{ products.paginator.num_pages }}.
+                </span>
+
+                {% if products.has_next %}
+                    <a href="?page={{ products.next_page_number }}">next</a>
+                    <a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        {% else %}
+        <div class="row">
+          {% if search %}
+            <p class="ms-2"> Résultats des recherches pour <span class="fw-bold"> " {{search}} "</span></p>
+          {% endif %}
+            <p>Aucun résultat n'a été trouvé</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}

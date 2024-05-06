@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.core.paginator import Paginator
 import json
 import datetime
 
 from store.models import Product, Order, OrderItem
-from store.utils import cookie_cart, get_cart_data, guest_order
+from store.utils import cookie_cart, get_cart_data,guest_order, get_filter,search_products,search_products_with_filter,filter_products
 
 
 def home(request):
@@ -12,9 +13,34 @@ def home(request):
     return render(request, "store/pages/home.html", context)
 
 def store(request):
-    products = Product.objects.all()
     context = get_cart_data(request)
-    context["products"] = products
+    if(request.method == "POST" ):
+        form = request.POST
+        print(form)
+        filter_value = form["filter"]
+        search_value = form["searchProd"]
+        if filter_value != "" and search_value != "":
+            products, context["search"] = search_products_with_filter(search_value, filter_value)
+        elif filter_value != "" and search_value == "":
+            products = filter_products(filter_value)
+        else:
+            products = Product.objects.all().order_by("id")
+        context["filters"] = get_filter(filter_value)
+    else:
+        products = Product.objects.all().order_by("id")
+        context["filters"] = get_filter("none")
+    
+    if (len(products) <= 0):
+        context["products"] = products
+    else:  
+        if (len(products) >= 6):
+            paginator = Paginator(products, 6)
+        else: 
+            paginator = Paginator(products, len(products))
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+        context["products"] = page_obj
+    
     return render(request, "store/pages/store.html", context)
 
 def cart(request):
@@ -27,7 +53,7 @@ def checkout(request):
 
 def update_item(request):
     data = json.loads(request.body)
-    product_id = data['productId']
+    product_id = data["productId"]
     action = data["action"]
     
     customer = request.user.customer
@@ -52,7 +78,7 @@ def process_order(request):
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        total = float(data['form']['total'])
+        total = float(data["form"]["total"])
         order.transaction_id = transaction_id
         
         if total == float(order.get_cart_total):
@@ -61,7 +87,7 @@ def process_order(request):
     else:
         customer, order = guest_order(request, data)
     
-    total = float(data['form']['total'])
+    total = float(data["form"]["total"])
     order.transaction_id = transaction_id
     
     if total == float(order.get_cart_total):
@@ -72,6 +98,7 @@ def process_order(request):
 def see_product(request, id): 
     product = Product.objects.get(id=id)
     context = get_cart_data(request)
-    context['product'] = product
-    print('cartItems', context['cartItems'])
+    context["product"] = product
     return render(request, "store/pages/product-item.html", context)
+
+    

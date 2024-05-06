@@ -36,7 +36,7 @@
     <div class="box-element hidden" id="payment-info">
       <small>Paypal Options</small>
       <button class="btn btn-outline-dark" id="make-payment">
-        Make payment
+        Acheter maintenant
       </button>
     </div>
   </div>
@@ -44,10 +44,10 @@
   <div class="col-lg-6">
     <div class="box-element">
       <a class="btn btn-outline-dark" href="{% url 'cart' %}"
-        >&#x2190; Back to Cart</a
+        >&#x2190; Voir le panier</a
       >
       <hr />
-      <h3>Order Summary</h3>
+      <h3>Récapitulatif de la commande</h3>
       <hr />
       {% for item in items %}
       <div class="cart-row">

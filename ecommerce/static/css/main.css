@@ -16,6 +16,7 @@
 }
 body {
   background-color: hsl(0, 0%, 98%);
+  overflow-x: hidden;
 }
 
 h1,
@@ -187,4 +188,69 @@ i:hover {
 .o_footer {
   position: relative;
   top: 6rem;
+}
+.store-container {
+  min-height: 100vh;
+}
+.home {
+  position: relative;
+}
+.jm-bg-home {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  /* transform: scale(0.3); */
+  opacity: 0.7;
+}
+.form-widget,
+.form-widget .jm-input-search {
+  position: relative;
+}
+.form-widget .jm-input-search button {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+}
+
+option:checked {
+  color: #ffffff;
+  background-color: var(--primary-color) !important;
+}
+#view-mode__card:checked ~ .view-mode__card,
+#view-mode__list:checked ~ .view-mode__list {
+  display: flex;
+}
+#view-mode__card ~ .view-mode__card,
+#view-mode__list ~ .view-mode__list {
+  display: none;
+}
+#view-mode__card:checked
+  ~ .row
+  .col-sm-12
+  .row
+  .col-3
+  label[for="view-mode__card"],
+#view-mode__list:checked
+  ~ .row
+  .col-sm-12
+  .row
+  .col-3
+  label[for="view-mode__list"] {
+  background: var(--primary-color);
+}
+#view-mode__card:checked
+  ~ .row
+  .col-sm-12
+  .row
+  .col-3
+  label[for="view-mode__card"]
+  i,
+#view-mode__list:checked
+  ~ .row
+  .col-sm-12
+  .row
+  .col-3
+  label[for="view-mode__list"]
+  i {
+  color: #ffffff;
 }

@@ -70,3 +70,71 @@ def guest_order(request, data):
             quantity = item['quantity']
         )
     return customer, order
+
+def get_filter(filter_value):
+    filters = [
+        {
+            "value":"most",
+            "is_select":False,
+            "name":"En vedette"
+        },
+        {
+            "value":"new",
+            "is_select":False,
+            "name":"Nouvelle arrivées"
+        },
+        {
+            "value":"sorta",
+            "is_select":False,
+            "name":"Nom(A-Z)"
+        },
+        {
+            "value":"priceup",
+            "is_select":False,
+            "name":"Prix - Croissant"
+        },
+        {
+            "value":"pricedown",
+            "is_select":False,
+            "name":"Prix - Décroissant"
+        }
+    ]
+    if filter_value == "none":
+        return filters
+    else:
+        for item in filters:
+            if filter_value == item["value"]:
+                item['is_select'] = True
+                break
+        return filters
+    
+def search_products(value_search): 
+    products = Product.objects.filter(name__contains=value_search).order_by("id")
+    return products
+
+def filter_products(filter_value):
+    if filter_value == "sorta":
+        products = Product.objects.order_by("name")
+    elif filter_value == "priceup":
+        products = Product.objects.order_by("price")    
+    elif filter_value == "pricedown":
+        products = Product.objects.order_by("-price")
+    elif filter_value == "new":
+        products = Product.objects.order_by("-id")
+    else:
+        products = Product.objects.all().order_by("id")
+    return products
+
+def search_products_with_filter(value_search, filter_value):
+    if filter_value == "sorta":
+        products = Product.objects.filter(name__contains=value_search).order_by("name")
+    elif filter_value == "priceup":
+        products = Product.objects.filter(name__contains=value_search).order_by("price")    
+    elif filter_value == "pricedown":
+        products = Product.objects.filter(name__contains=value_search).order_by("-price")  
+    elif filter_value == "new":
+        products = Product.objects.filter(name__contains=value_search).order_by("-id")
+    else:
+        products = Product.objects.filter(name__contains=value_search).order_by("id")
+    return products, value_search
+    

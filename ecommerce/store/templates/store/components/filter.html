@@ -1,0 +1,33 @@
+
+        
+          <div class="col-sm-12 col-lg-7 col-md-6">
+            <form action="{% url "search" %}" method="POST" class="form-widget">
+              {% csrf_token %} 
+              <input type="text" class="form-control jm-input-search" name="search" placeholder="Rechercher un produit..." required>
+              <button type="submit" class="btn"><i class="fa-solid fa-search"></i></button>
+            </form>
+          </div>
+          <div class="col-sm-12 col-lg-5 col-md-6">
+            <div class="row">
+              <div class="col-9 d-flex gap-2 align-items-center">
+                <p>Trier par :</p>
+                <form action="{% url "filter" %}" method="POST" class="form-widget">
+                  {% csrf_token %} 
+                  <select class="form-select filter_product" onChange="this.form.submit()" name="filter">
+                    <option value="most">En vedette</option>
+                    <option value="new">Nouvelle arrivées</option>
+                    <option value="sorta">Nom(A-Z)</option>
+                    <option value="priceup">Prix - Croissant</option>
+                    <option value="pricedown">Prix - Décroissant</option>
+                  </select>
+                </form>
+              </div>
+              <div class="col-3 d-flex gap-1 align-items-center">
+                <label class="form-control" for="view-mode__card">
+                  <i class="fa-solid fa-grip"></i>
+                </label>
+                <label class="form-control" for="view-mode__list"><i class="fa-solid fa-bars"></i></label>
+              </div>
+            </div>
+          </div>
+        

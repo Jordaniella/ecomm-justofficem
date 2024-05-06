@@ -1,3 +1,78 @@
-{% extends "store/main.html" %} {% block content %}
-<h1>Home page work!</h1>
+{% extends "store/main.html" %} {% load static %} {% block content %}
+<div class="jm-bg-home">
+    <img src="{% static "images/main-bg.png" %}"/>
+</div>
+  <div class="text-start home d-flex flex-column justify-content-between align-items-start">
+    <div class="col-md-6 mt-2 mb-5 col-sm-12">
+      <h1 class="display-3 fw-bold">Votre Solution<span class="jm-text"> Visuel</span> No°1</h1>
+      <p class="fw-normal text-muted mb-3">
+        Bienvenue dans notre boutique en ligne spécialisée dans la vente de modèles numériques pour des design de haute qualité ! 
+      </p>
+      <p class="fw-normal text-muted mb-3">
+        Que vous soyez un amateur de streaming, un professionnel à la recherche d'outils numériques performants ou un passionné de logiciels innovants, vous êtes au bon endroit.
+      </p>
+      <div class="d-flex justify-content-between lead fw-normal align-items-center mt-5">
+        <a href="{% url "checkout" %}"class="jm-btn btn--primary">
+            <div class="jm-btn-decorator"><i class="fa-solid fa-chevron-right"></i></div>
+            Consulter nos produits
+        </a> 
+      </div>
+    </div>
+  </div>
+    <div class="p-5 text-center bg-body-tertiary">
+        <div class="container py-5">
+        <h1 class="text-body-emphasis">Templates de présentation personnalisés</h1>
+        <p class="col-lg-8 mx-auto lead">
+            Nous assurons un design innovant et épuré tout en étant clair et précis
+        </p>
+        </div>
+    </div>
+  <div class="d-md-flex flex-md-equal my-md-3 row">
+    <div class="text-bg-dark rounded-5 me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden col">
+      <div class="my-3 py-3">
+        <h2 class="display-5">Another headline</h2>
+        <p class="lead">And an even wittier subheading.</p>
+      </div>
+      <div
+        class="bg-body-tertiary shadow-sm mx-auto"
+        style="width: 80%; height: 300px; border-radius: 21px 21px 0 0"
+      ></div>
+    </div>
+    <div class="bg-body-tertiary rounded-5 me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden col">
+      <div class="my-3 p-3">
+        <h2 class="display-5">Another headline</h2>
+        <p class="lead">And an even wittier subheading.</p>
+      </div>
+      <div
+        class="bg-dark shadow-sm mx-auto"
+        style="width: 80%; height: 300px; border-radius: 21px 21px 0 0"
+      ></div>
+    </div>
+  </div>
+  
+  <div class="d-md-flex flex-md-equal my-md-3 row my-lg-5">
+    <div class="bg-body-tertiary rounded-5 me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden col">
+      
+      <div class="my-3 py-3">
+        <h2 class="display-5">Another headline</h2>
+        <p class="lead">And an even wittier subheading.</p>
+      </div>
+      <div
+        class="bg-dark shadow-sm mx-auto"
+        style="width: 80%; height: 300px; border-radius: 21px 21px 0 0"
+      ></div>
+    </div>
+    <div class="text-bg-dark rounded-5 me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden col">
+      
+      <div class="my-3 p-3">
+        <h2 class="display-5">Another headline</h2>
+        <p class="lead">And an even wittier subheading.</p>
+      </div>
+      <div
+        class="bg-body-tertiary shadow-sm mx-auto"
+        style="width: 80%; height: 300px; border-radius: 21px 21px 0 0"
+      ></div>
+    </div>
+  </div>
+
 {% endblock content %}

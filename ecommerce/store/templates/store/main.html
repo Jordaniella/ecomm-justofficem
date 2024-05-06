@@ -69,7 +69,7 @@
   </head>
   <body>
     {% include "store/components/navigation.html"  with cartItems=cartItems%}
-    <div class="container jm-container py-5">{% block content %}{% endblock content %}</div>
+    <main class="container jm-container py-5">{% block content %}{% endblock content %}</main>
     <div id="liveAlertPlaceholder"></div>
     {% include "store/components/footer.html" %}
     <script

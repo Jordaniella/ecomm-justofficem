@@ -1,20 +1,5 @@
 let allUpdateButtons = document.querySelectorAll(".update-cart");
 
-allUpdateButtons.forEach((element) => {
-  element.addEventListener("click", () => {
-    let productId = element.dataset.product;
-    let action = element.dataset.action;
-
-    console.log("USER : ", user);
-    if (user == "AnonymousUser") {
-      addCookieItem(productId, action);
-    } else {
-      updateUserOrder(productId, action);
-    }
-    console.log("Product ID : ", productId, "Action : ", action);
-  });
-});
-
 const addCookieItem = (productId, action) => {
   console.log("User is not authenticated");
 
@@ -60,6 +45,24 @@ const updateUserOrder = (productId, action) => {
     });
 };
 
+const filterProduct = () => {
+  allFilter = document.querySelector(".filter_product");
+  let url = "/product/filter/";
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrftoken,
+    },
+    body: JSON.stringify({ filter: allFilter.value }),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      location.reload();
+    });
+};
 // Activate the modal
 
 // const myModal = document.getElementById("cartModal");

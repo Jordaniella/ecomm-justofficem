@@ -129,7 +129,7 @@
 }
 
 .btn--regular .jm-btn-decorator {
-  transform: scale(1.12);
+  transform: scale(1.1);
   border-top: var(--text-black-100) 2px solid;
   border-bottom: var(--text-black-100) 2px solid;
   border-right: var(--text-black-100) 2px solid;
